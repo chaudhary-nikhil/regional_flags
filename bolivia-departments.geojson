@@ -1,0 +1,77 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "Pando" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-69.6,-11.4],[-66.4,-11.4],[-66.4,-9.7],[-69.6,-9.7],[-69.6,-11.4]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "La Paz" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-69.6,-17.0],[-67.0,-17.0],[-67.0,-10.0],[-69.6,-10.0],[-69.6,-17.0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Beni" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-67.0,-15.2],[-64.2,-15.2],[-64.2,-9.7],[-67.0,-9.7],[-67.0,-15.2]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Santa Cruz" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-64.2,-20.2],[-57.5,-20.2],[-57.5,-13.2],[-64.2,-13.2],[-64.2,-20.2]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Cochabamba" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-67.0,-18.2],[-64.2,-18.2],[-64.2,-15.2],[-67.0,-15.2],[-67.0,-18.2]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Oruro" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-68.6,-18.8],[-66.4,-18.8],[-66.4,-17.0],[-68.6,-17.0],[-68.6,-18.8]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Potosí" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-67.6,-22.9],[-65.2,-22.9],[-65.2,-19.2],[-67.6,-19.2],[-67.6,-22.9]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Chuquisaca" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-65.2,-22.9],[-63.8,-22.9],[-63.8,-18.5],[-65.2,-18.5],[-65.2,-22.9]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Tarija" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-63.8,-22.9],[-62.5,-22.9],[-62.5,-21.0],[-63.8,-21.0],[-63.8,-22.9]]]
+      }
+    }
+  ]
+}

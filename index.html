@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Flags Explorer</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <h1>🌍 World Flags Explorer</h1>
+            <p>Click on any country to explore its flag and subregions</p>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Map Container -->
+            <div id="map"></div>
+
+            <!-- Sidebar -->
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <h2>Select a Region</h2>
+                    <button class="close-btn" id="closeSidebar">&times;</button>
+                </div>
+                
+                <div class="sidebar-content" id="sidebarContent">
+                    <div class="welcome-message">
+                        <div class="globe-icon">🌐</div>
+                        <p>Click on any country on the map to view its flag and explore its subregions.</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Search Box -->
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search for a country..." />
+            <div class="search-results" id="searchResults"></div>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <h4>How to use</h4>
+            <ul>
+                <li><span class="legend-icon">👆</span> Click country for flag</li>
+                <li><span class="legend-icon">🔍</span> Search by name</li>
+                <li><span class="legend-icon">📍</span> Click subregion tabs</li>
+            </ul>
+        </div>
+
+        <!-- Hover Tooltip for Flags -->
+        <div id="flagTooltip" class="flag-tooltip">
+            <div class="tooltip-country">
+                <img id="tooltipFlag" src="" alt="" class="tooltip-flag" />
+                <div id="tooltipName" class="tooltip-name"></div>
+            </div>
+            <div id="tooltipSubregion" class="tooltip-subregion" style="display: none;">
+                <img id="tooltipSubregionFlag" src="" alt="" class="tooltip-subregion-flag" />
+                <div id="tooltipSubregionName" class="tooltip-subregion-name"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="data.js"></script>
+    <script src="nl-municipalities.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
