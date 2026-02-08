@@ -36,6 +36,10 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     maxZoom: 20
 }).addTo(map);
 
+// Create a pane for subregions above the default overlay pane so they receive hover/click events first
+map.createPane('subregions');
+map.getPane('subregions').style.zIndex = 450;
+
 // GeoJSON layers
 let geoJsonLayer;
 let subregionLayers = {};
@@ -65,7 +69,7 @@ const subregionGeoJSONUrls = {
     'JP': 'https://raw.githubusercontent.com/dataofjapan/land/master/japan.geojson', // Japan prefectures
     'KR': 'https://raw.githubusercontent.com/southkorea/southkorea-maps/master/gadm/json/skorea-provinces-geo.json', // South Korea provinces
     'RU': 'https://raw.githubusercontent.com/Hubbitus/RussiaRegions.geojson/master/RussiaRegions.geojson', // Russia federal subjects
-    'FR': 'https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/france-regions.geojson', // France regions (pre-2016 structure)
+    'FR': 'https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/regions.geojson', // France regions (post-2016, uses nom/code)
     'BR': 'https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/brazil-states.geojson', // Brazil states
     'BO': 'bolivia-departments.geojson', // Bolivia departments (local)
     'ES': 'spain-ccaa.geojson', // Spain autonomous communities (local; geoBoundaries uses LFS)
@@ -424,16 +428,26 @@ const ruSubjectNameToCode = {
     'ямало-ненецкий автономный округ': 'YAN', 'ямало-ненецкий ао': 'YAN', 'янао': 'YAN', 'yamalo-nenets': 'YAN', 'yamal-nenets': 'YAN'
 };
 
-// France region name to code mapping (GeoJSON uses pre-2016 region names; maps to post-2016 merged region codes)
+// France region name to code mapping (post-2016 regions; gregoiredavid GeoJSON uses "nom")
 const frRegionNameToCode = {
     'île-de-france': 'IDF', 'ile-de-france': 'IDF', 'ile de france': 'IDF',
     'bretagne': 'BRE', 'brittany': 'BRE',
     'basse-normandie': 'NOR', 'haute-normandie': 'NOR', 'normandie': 'NOR', 'normandy': 'NOR',
+    'hauts-de-france': 'HDF', 'hauts de france': 'HDF', 'nord-pas-de-calais-picardie': 'HDF',
+    'grand est': 'GES', 'alsace-champagne-ardenne-lorraine': 'GES',
+    'centre-val de loire': 'CVL', 'centre-val de loire': 'CVL', 'centre': 'CVL',
+    'pays de la loire': 'PDL', 'pays de la loire': 'PDL',
+    'bourgogne-franche-comté': 'BFC', 'bourgogne-franche-comte': 'BFC',
     'languedoc-roussillon': 'OCC', 'midi-pyrénées': 'OCC', 'midi-pyrenees': 'OCC', 'occitanie': 'OCC',
     'aquitaine': 'NAQ', 'limousin': 'NAQ', 'poitou-charentes': 'NAQ', 'nouvelle-aquitaine': 'NAQ',
     'auvergne': 'ARA', 'rhône-alpes': 'ARA', 'rhone-alpes': 'ARA', 'auvergne-rhône-alpes': 'ARA',
     'provence-alpes-côte d\'azur': 'PAC', 'provence-alpes-cote d\'azur': 'PAC', 'paca': 'PAC',
     'corse': 'COR', 'corsica': 'COR'
+};
+// France INSEE region code to our code (gregoiredavid uses code "11", "24", etc.)
+const frInseeCodeToRegionCode = {
+    '11': 'IDF', '24': 'BRE', '27': 'NOR', '28': 'HDF', '32': 'GES', '44': 'PDL',
+    '52': 'BFC', '53': 'NAQ', '75': 'OCC', '76': 'ARA', '84': 'PAC', '93': 'COR', '94': 'CVL'
 };
 
 // Brazil state name to code mapping (GeoJSON uses name + sigla)
@@ -560,6 +574,8 @@ function findSubregionCode(feature, countryCode) {
         props.NAME_LOCAL, props.name_local,
         // Japan GeoJSON properties
         props.nam, props.nam_ja,
+        // France GeoJSON (gregoiredavid uses "nom")
+        props.nom,
         // geoBoundaries
         props.shapeName, props.shapename
     ].filter(n => n);
@@ -620,39 +636,34 @@ function findSubregionCode(feature, countryCode) {
     // For South Korea, try direct NAME_1 match (GeoJSON uses same names as our data keys)
     if (countryCode === 'KR') {
         const countryData = countriesData[countryCode];
-        console.log('KR direct match: NAME_1 =', props.NAME_1, 'VARNAME_1 =', props.VARNAME_1);
-        
-        // Try NAME_1 directly (e.g., "Seoul", "Busan", "Gyeonggi-do")
-        if (props.NAME_1 && countryData?.subregions?.[props.NAME_1]) {
-            console.log('KR direct match found:', props.NAME_1);
-            return props.NAME_1;
-        }
-        
-        // Try NAME_1 with "-do" suffix for provinces (GeoJSON might use "Gyeonggi" without suffix)
+        if (props.NAME_1 && countryData?.subregions?.[props.NAME_1]) return props.NAME_1;
         if (props.NAME_1) {
             const withDo = props.NAME_1 + '-do';
-            if (countryData?.subregions?.[withDo]) {
-                console.log('KR match with -do suffix:', withDo);
-                return withDo;
-            }
+            if (countryData?.subregions?.[withDo]) return withDo;
         }
-        
-        // Try VARNAME_1 alternatives (pipe-separated)
         if (props.VARNAME_1) {
             const varNames = props.VARNAME_1.split('|');
             for (const varName of varNames) {
                 const trimmed = varName.trim();
-                if (countryData?.subregions?.[trimmed]) {
-                    console.log('KR varname match found:', trimmed);
-                    return trimmed;
-                }
-                // Also try with -do suffix
+                if (countryData?.subregions?.[trimmed]) return trimmed;
                 const trimmedWithDo = trimmed + '-do';
-                if (countryData?.subregions?.[trimmedWithDo]) {
-                    console.log('KR varname match with -do:', trimmedWithDo);
-                    return trimmedWithDo;
-                }
+                if (countryData?.subregions?.[trimmedWithDo]) return trimmedWithDo;
             }
+        }
+    }
+    
+    // For France, try direct nom/code match (gregoiredavid GeoJSON uses "nom" and "code")
+    if (countryCode === 'FR') {
+        const countryData = countriesData[countryCode];
+        if (props.nom && countryData?.subregions) {
+            const nomLower = props.nom.toLowerCase().trim();
+            const code = frRegionNameToCode[nomLower];
+            if (code) return code;
+        }
+        if (props.code != null && countryData?.subregions) {
+            const inseeKey = String(props.code);
+            const frCodeByInsee = frInseeCodeToRegionCode[inseeKey];
+            if (frCodeByInsee && countryData.subregions[frCodeByInsee]) return frCodeByInsee;
         }
     }
     
@@ -959,6 +970,7 @@ async function loadSubregionGeoJSON(countryCode) {
         console.log('Sample feature properties:', data.features[0]?.properties);
         
         subregionLayers[countryCode] = L.geoJSON(data, {
+            pane: 'subregions',
             style: () => getSubregionStyle(countryCode),
             onEachFeature: (feature, layer) => onEachSubregionFeature(feature, layer, countryCode)
         }).addTo(map);
@@ -991,6 +1003,7 @@ async function loadSubSubregionGeoJSON(countryCode) {
         if (!data.features || data.features.length === 0) return;
         
         subSubregionLayers[countryCode] = L.geoJSON(data, {
+            pane: 'subregions',
             style: () => getSubregionStyle(countryCode),
             onEachFeature: (feature, layer) => onEachSubSubregionFeature(feature, layer, countryCode)
         }).addTo(map);

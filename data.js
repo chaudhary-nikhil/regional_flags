@@ -392,7 +392,7 @@ const countriesData = {
         }
     },
     
-    // France
+    // France - 13 mainland regions (post-2016)
     "FR": {
         name: "France",
         capital: "Paris",
@@ -400,14 +400,19 @@ const countriesData = {
         flag: "https://flagcdn.com/w640/fr.png",
         subregionType: "Regions",
         subregions: {
-            "IDF": { name: "Île-de-France", flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Flag_of_%C3%8Ele-de-France.svg/255px-Flag_of_%C3%8Ele-de-France.svg.png" },
-            "BRE": { name: "Brittany", flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Flag_of_Brittany_%28Gwenn_ha_du%29.svg/255px-Flag_of_Brittany_%28Gwenn_ha_du%29.svg.png" },
-            "NOR": { name: "Normandy", flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Flag_of_Normandie.svg/255px-Flag_of_Normandie.svg.png" },
-            "OCC": { name: "Occitanie", flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Occitania_%28with_star%29.svg/255px-Flag_of_Occitania_%28with_star%29.svg.png" },
-            "NAQ": { name: "Nouvelle-Aquitaine", flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_Nouvelle-Aquitaine.svg/255px-Flag_of_Nouvelle-Aquitaine.svg.png" },
-            "ARA": { name: "Auvergne-Rhône-Alpes", flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Logo_Auvergne_Rh%C3%B4ne_Alpes.svg/255px-Logo_Auvergne_Rh%C3%B4ne_Alpes.svg.png" },
-            "PAC": { name: "Provence-Alpes-Côte d'Azur", flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Drapeau_de_la_Provence.svg/255px-Drapeau_de_la_Provence.svg.png" },
-            "COR": { name: "Corsica", flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Flag_of_Corsica.svg/255px-Flag_of_Corsica.svg.png" }
+            "IDF": { name: "Île-de-France", flag: "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_%C3%8Ele-de-France.svg?width=255" },
+            "BRE": { name: "Brittany", flag: "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Brittany_(Gwenn_ha_du).svg?width=255" },
+            "NOR": { name: "Normandy", flag: "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Normandie.svg?width=255" },
+            "HDF": { name: "Hauts-de-France", flag: "https://commons.wikimedia.org/wiki/Special:FilePath/Logo_region_Hauts-de-France.svg?width=255" },
+            "GES": { name: "Grand Est", flag: "https://commons.wikimedia.org/wiki/Special:FilePath/Drapeau_du_Grand_Est.svg?width=255" },
+            "CVL": { name: "Centre-Val de Loire", flag: "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Centre-Val_de_Loire.svg?width=255" },
+            "PDL": { name: "Pays de la Loire", flag: "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Pays_de_la_Loire.svg?width=255" },
+            "BFC": { name: "Bourgogne-Franche-Comté", flag: "https://commons.wikimedia.org/wiki/Special:FilePath/Logo_région_Bourgogne-Franche-Comté.svg?width=255" },
+            "OCC": { name: "Occitanie", flag: "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Occitania_(with_star).svg?width=255" },
+            "NAQ": { name: "Nouvelle-Aquitaine", flag: "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Nouvelle-Aquitaine.svg?width=255" },
+            "ARA": { name: "Auvergne-Rhône-Alpes", flag: "https://commons.wikimedia.org/wiki/Special:FilePath/Logo_Auvergne_Rh%C3%B4ne_Alpes.svg?width=255" },
+            "PAC": { name: "Provence-Alpes-Côte d'Azur", flag: "https://commons.wikimedia.org/wiki/Special:FilePath/Drapeau_de_la_Provence.svg?width=255" },
+            "COR": { name: "Corsica", flag: "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Corsica.svg?width=255" }
         }
     },
     
