@@ -65,7 +65,7 @@ const subregionGeoJSONUrls = {
     'NL': 'https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/the-netherlands.geojson',
     'BE': 'https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/belgium-provinces.geojson',
     'PL': 'https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/poland.geojson',
-    'LK': 'map.geojson', // Custom Sri Lanka provinces GeoJSON
+    'LK': 'sri-lanka-provinces.geojson', // Custom Sri Lanka provinces GeoJSON
     'JP': 'https://raw.githubusercontent.com/dataofjapan/land/master/japan.geojson', // Japan prefectures
     'KR': 'https://raw.githubusercontent.com/southkorea/southkorea-maps/master/gadm/json/skorea-provinces-geo.json', // South Korea provinces
     'RU': 'https://raw.githubusercontent.com/Hubbitus/RussiaRegions.geojson/master/RussiaRegions.geojson', // Russia federal subjects

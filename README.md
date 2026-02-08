@@ -10,21 +10,6 @@ An interactive map application that displays flags of countries and their subreg
 - **Responsive Design**: Works on desktop and mobile devices
 - **Color-coded Continents**: Countries are colored by continent for easy identification
 
-## Supported Countries with Subregion Flags
-
-- **United States** - All 50 state flags
-- **Canada** - All provinces and territories
-- **Germany** - All 16 federal states (Länder)
-- **United Kingdom** - England, Scotland, Wales, Northern Ireland
-- **Spain** - All autonomous communities
-- **Australia** - All states and territories
-- **Brazil** - All 27 states
-- **Mexico** - All 32 states
-- **India** - All states and territories
-- **Japan** - Selected prefectures
-- **France** - Regional flags
-- **Italy** - Regional flags
-
 ## How to Run
 
 ### Option 1: Using a Local Server (Recommended)
