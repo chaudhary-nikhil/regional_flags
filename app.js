@@ -61,24 +61,26 @@ const subregionGeoJSONUrls = {
     'AU': 'https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/australia.geojson',
     'DE': 'https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/germany.geojson',
     'GB': 'https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/uk-countries.geojson',
-    'CH': 'https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/switzerland-cantons.geojson',
+    'CH': 'https://raw.githubusercontent.com/codeforgermany/click_that_hood/main/public/data/switzerland.geojson',
     'NL': 'https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/the-netherlands.geojson',
     'BE': 'https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/belgium-provinces.geojson',
     'PL': 'https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/poland.geojson',
-    'LK': 'sri-lanka-provinces.geojson', // Custom Sri Lanka provinces GeoJSON
+    'LK': './custom_geojson/sri-lanka-provinces.geojson', // Custom Sri Lanka provinces GeoJSON
     'JP': 'https://raw.githubusercontent.com/dataofjapan/land/master/japan.geojson', // Japan prefectures
     'KR': 'https://raw.githubusercontent.com/southkorea/southkorea-maps/master/gadm/json/skorea-provinces-geo.json', // South Korea provinces
     'RU': 'https://raw.githubusercontent.com/Hubbitus/RussiaRegions.geojson/master/RussiaRegions.geojson', // Russia federal subjects
     'FR': 'https://raw.githubusercontent.com/gregoiredavid/france-geojson/master/regions.geojson', // France regions (post-2016, uses nom/code)
     'BR': 'https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/brazil-states.geojson', // Brazil states
-    'BO': 'bolivia-departments.geojson', // Bolivia departments (local)
-    'ES': 'spain-ccaa.geojson', // Spain autonomous communities (local; geoBoundaries uses LFS)
-    'CR': 'costa-rica-provinces.geojson' // Costa Rica provinces (local)
+    'BO': './custom_geojson/bolivia-departments.geojson', // Bolivia departments (local)
+    'ES': './spain-communities.simplified.geojson', // Spain autonomous communities (local; geoBoundaries uses LFS)
+    'CR': './custom_geojson/costa-rica-provinces.geojson', // Costa Rica provinces (local)
+    'SM': './custom_geojson/san-marino-castelli.geojson', // San Marino castelli
+    'PK': './custom_geojson/pakistan-provinces.geojson' // Pakistan provinces and territories
 };
 
 // Sub-subregion (tertiary) GeoJSON URLs - e.g. NL municipalities
 const subSubregionGeoJSONUrls = {
-    'NL': 'netherlands-municipalities.geojson'
+    'NL': './custom_geojson/netherlands-municipalities.geojson'
 };
 
 // State/Province name to code mapping for US
@@ -127,6 +129,17 @@ const lkProvinceNameToCode = {
     'north central': 'NC', 'north central province': 'NC', 'northcentral': 'NC', 'north-central': 'NC', 'uturumeda palata': 'NC', 'uturumeda': 'NC',
     'uva': 'UV', 'uva province': 'UV', 'uva palata': 'UV',
     'sabaragamuwa': 'SG', 'sabaragamuwa province': 'SG', 'sabaragamuwa palata': 'SG'
+};
+
+// Pakistan provinces/territories name to code mapping (ISO 3166-2:PK)
+const pkAdminNameToCode = {
+    'azad kashmir': 'JK', 'azad jammu and kashmir': 'JK', 'ajk': 'JK', 'jk': 'JK',
+    'balochistan': 'BA', 'baluchistan': 'BA', 'ba': 'BA',
+    'gilgit-baltistan': 'GB', 'gilgit baltistan': 'GB', 'gb': 'GB',
+    'islamabad': 'IS', 'islamabad capital territory': 'IS', 'ict': 'IS', 'is': 'IS',
+    'khyber pakhtunkhwa': 'KP', 'khyber pakhtunkhwa province': 'KP', 'kp': 'KP', 'nwfp': 'KP',
+    'punjab': 'PB', 'pb': 'PB',
+    'sindh': 'SD', 'sind': 'SD', 'sd': 'SD'
 };
 
 // Switzerland cantons name to code mapping
@@ -474,6 +487,41 @@ const crProvinceNameToCode = {
     'san josé': 'SJ', 'san jose': 'SJ', 'provincia san josé': 'SJ', 'provincia san jose': 'SJ'
 };
 
+// San Marino castello name to code mapping (ISO 3166-2:SM uses 01-09)
+const smCastelloNameToCode = {
+    'acquaviva': '01',
+    'borgo maggiore': '06',
+    'chiesanuova': '02',
+    'città di san marino': '07', 'citta di san marino': '07', 'city of san marino': '07', 'san marino': '07',
+    'domagnano': '03',
+    'faetano': '04',
+    'fiorentino': '05',
+    'montegiardino': '08',
+    'serravalle': '09'
+};
+
+const esAutonomousCommunityNameToCode = {
+    'andalucia': 'AN', 'andalusia': 'AN',
+    'aragon': 'AR',
+    'asturias': 'AS',
+    'baleares': 'IB', 'balearic islands': 'IB', 'illes balears': 'IB',
+    'canary islands': 'CN', 'canarias': 'CN', 'islas canarias': 'CN',
+    'cantabria': 'CB',
+    'castilla-la mancha': 'CM',
+    'castilla-leon': 'CL', 'castile and león': 'CL', 'castile and leon': 'CL',
+    'cataluña': 'CT', 'catalonia': 'CT', 'cataluna': 'CT',
+    'ceuta': 'CE',  // Add CE to data.js if you want a flag
+    'extremadura': 'EX',
+    'galicia': 'GA',
+    'la rioja': 'RI', 'rioja': 'RI',
+    'madrid': 'MD',
+    'melilla': 'ML',  // Add ML to data.js if you want a flag
+    'murcia': 'MC',
+    'navarra': 'NC', 'navarre': 'NC',
+    'pais vasco': 'PV', 'basque country': 'PV', 'euskadi': 'PV',
+    'valencia': 'VC', 'comunidad valenciana': 'VC'
+};
+
 // Bolivia department name to code mapping (ISO 3166-2 style: BEN, CHU, CBA, etc.)
 const boDepartmentNameToCode = {
     'beni': 'BEN', 'chuquisaca': 'CHU', 'cochabamba': 'CBA', 'la paz': 'LPZ',
@@ -609,6 +657,8 @@ function findSubregionCode(feature, countryCode) {
     else if (countryCode === 'BO') mapping = boDepartmentNameToCode;
     else if (countryCode === 'ES') mapping = esAutonomousCommunityNameToCode;
     else if (countryCode === 'CR') mapping = crProvinceNameToCode;
+    else if (countryCode === 'SM') mapping = smCastelloNameToCode;
+    else if (countryCode === 'PK') mapping = pkAdminNameToCode;
     
     if (!mapping) return null;
     
@@ -618,6 +668,14 @@ function findSubregionCode(feature, countryCode) {
         let upperCode = code.toString().toUpperCase();
         // For Costa Rica, shapeISO is "CR-H", "CR-A", etc. - extract the part after "CR-"
         if (countryCode === 'CR' && upperCode.startsWith('CR-')) {
+            upperCode = upperCode.slice(3);
+        }
+        // For San Marino, shapeISO is "SM-01", "SM-02", etc. - extract the part after "SM-"
+        if (countryCode === 'SM' && upperCode.startsWith('SM-')) {
+            upperCode = upperCode.slice(3);
+        }
+        // For Pakistan, shapeISO is "PK-JK", "PK-BA", etc. - extract the part after "PK-"
+        if (countryCode === 'PK' && upperCode.startsWith('PK-')) {
             upperCode = upperCode.slice(3);
         }
         // Check if this code exists in our data

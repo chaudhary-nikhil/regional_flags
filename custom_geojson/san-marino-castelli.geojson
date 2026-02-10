@@ -1,0 +1,77 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "Acquaviva", "shapeISO": "SM-01" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[12.416,43.938],[12.445,43.938],[12.445,43.965],[12.416,43.965],[12.416,43.938]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Borgo Maggiore", "shapeISO": "SM-06" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[12.438,43.925],[12.458,43.925],[12.458,43.945],[12.438,43.945],[12.438,43.925]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Chiesanuova", "shapeISO": "SM-02" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[12.416,43.892],[12.445,43.892],[12.445,43.925],[12.416,43.925],[12.416,43.892]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Città di San Marino", "shapeISO": "SM-07" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[12.448,43.935],[12.465,43.935],[12.465,43.952],[12.448,43.952],[12.448,43.935]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Domagnano", "shapeISO": "SM-03" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[12.465,43.925],[12.492,43.925],[12.492,43.958],[12.465,43.958],[12.465,43.925]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Faetano", "shapeISO": "SM-04" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[12.492,43.905],[12.517,43.905],[12.517,43.932],[12.492,43.932],[12.492,43.905]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Fiorentino", "shapeISO": "SM-05" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[12.445,43.892],[12.492,43.892],[12.492,43.925],[12.445,43.925],[12.445,43.892]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Montegiardino", "shapeISO": "SM-08" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[12.478,43.892],[12.505,43.892],[12.505,43.912],[12.478,43.912],[12.478,43.892]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Serravalle", "shapeISO": "SM-09" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[12.458,43.958],[12.517,43.958],[12.517,43.999],[12.458,43.999],[12.458,43.958]]]
+      }
+    }
+  ]
+}
